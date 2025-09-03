@@ -29,6 +29,7 @@ public class TicTacToeGame{
             String botSymbol = scanner.next();
 
             Bot bot = new Bot(botName,botSymbol, BotDifficultyLevel.EASY);
+            players.add(bot);
         }
 
         for(int i=1;i<dimension;i++){
