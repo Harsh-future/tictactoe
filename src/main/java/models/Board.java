@@ -21,6 +21,21 @@ public class Board {
         }
     }
 
+    public void displayBoard(Game game){
+
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board.size();j++){
+                if(board.get(i).get(j).getCellState().equals(CellState.EMPTY)){
+                    System.out.print("|   |");
+                }else{
+                    String str = board.get(i).get(j).getPlayer().getSymbol();
+                    System.out.print("| " + str + " |");
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public List<List<Cell>> getBoard() {
         return board;
     }

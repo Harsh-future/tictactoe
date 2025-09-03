@@ -19,6 +19,20 @@ public class Game {
 
     private int nextPlayerIndex;
 
+    private Player winner;
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    public void displayBoard(Game game){
+        board.displayBoard(game);
+    }
+
     private Game(){};
 
     public static Builder getBuilder(){

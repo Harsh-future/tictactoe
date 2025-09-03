@@ -1,5 +1,6 @@
 package org.example;
 
+import controller.GameController;
 import models.*;
 
 import java.util.ArrayList;
@@ -43,11 +44,24 @@ public class TicTacToeGame{
             players.add(player);
         }
 
+        GameController gameController = new GameController();
+        Game game = gameController.createGame(dimension,players);
 
-        Game game = Game.getBuilder()
-                    .setDimensions(dimension)
-                    .setPlayers(players)
-                    .build();
+        while(gameController.getGameStatus(game).equals(GameStatus.IN_PROGRESS)) {
+
+            //Game in play
+        }
+        gameController.displayBoard(game);
+
+        if(gameController.getGameStatus(game).equals(GameStatus.DRAW)){
+            System.out.println("Game is drawn. Nobody is the winner");
+        }
+
+        if(gameController.getGameStatus(game).equals(GameStatus.ENDED)){
+            System.out.println("Game is won by " + game.getWinner());
+        }
+
+
 
 
 
