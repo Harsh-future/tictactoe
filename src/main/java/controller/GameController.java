@@ -1,7 +1,10 @@
 package controller;
 
+import exceptions.InvalidCellStateException;
+import exceptions.InvalidRowColException;
 import models.Game;
 import models.GameStatus;
+import models.Move;
 import models.Player;
 
 import java.util.List;
@@ -22,8 +25,12 @@ public class GameController {
         // add undo feature
     }
 
-    public void makeMoves(Game game){
+    public void executeNextMove(Game game) throws InvalidCellStateException, InvalidRowColException {
+        game.makeNextMove();
+    }
 
+    public Player getNextPlayer(Game game){
+        return game.getPlayers().get(game.getNextPlayerIndex());
     }
 
     public GameStatus getGameStatus(Game game){

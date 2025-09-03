@@ -1,11 +1,14 @@
 package models;
 
 
+import exceptions.InvalidCellStateException;
 import exceptions.InvalidDimesionException;
 import exceptions.InvalidPlayerNumberException;
+import exceptions.InvalidRowColException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
 
@@ -21,6 +24,8 @@ public class Game {
 
     private Player winner;
 
+    private static Scanner scanner = new Scanner(System.in);
+
     public Player getWinner() {
         return winner;
     }
@@ -31,6 +36,37 @@ public class Game {
 
     public void displayBoard(Game game){
         board.displayBoard(game);
+    }
+
+    public void makeNextMove() throws InvalidCellStateException, InvalidRowColException {
+
+        //1. Player should allow to make the move
+        //2. Check whether the move is valid or not.
+
+        Player playerToMove = players.get(nextPlayerIndex);
+
+        System.out.println("Its player " + playerToMove.getName()+ " time to move.");
+
+        Move move = playerToMove.decideToMove(board);
+
+        //validation of move
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        if(move.isValidMove(board)){
+            //make the cell filled and save the move.
+            board.applyMove(move);
+            moves.add(move);
+
+            //check if there is a winner or drawn.
+
+
+            //make next move
+            nextPlayerIndex += 1;
+            nextPlayerIndex = nextPlayerIndex % players.size();
+        }
+
     }
 
     private Game(){};

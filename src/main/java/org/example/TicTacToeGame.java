@@ -49,9 +49,20 @@ public class TicTacToeGame{
 
         while(gameController.getGameStatus(game).equals(GameStatus.IN_PROGRESS)) {
 
-            //Game in play
+            System.out.println("Current state of the game");
+            gameController.displayBoard(game);
+
+            System.out.println("Do you want to undo? y/n");
+            String input = scanner.next();
+
+            if(input.equals("y")){
+                gameController.undo(game);
+            }else{
+                gameController.executeNextMove(game);
+            }
+
         }
-        gameController.displayBoard(game);
+
 
         if(gameController.getGameStatus(game).equals(GameStatus.DRAW)){
             System.out.println("Game is drawn. Nobody is the winner");

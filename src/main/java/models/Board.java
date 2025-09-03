@@ -36,6 +36,14 @@ public class Board {
         }
     }
 
+    public void applyMove(Move move){
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        board.get(row).get(col).setCellState(CellState.FILLED);
+        board.get(row).get(col).setPlayer(move.getPlayer());
+    }
+
     public List<List<Cell>> getBoard() {
         return board;
     }
