@@ -17,6 +17,7 @@ public class TicTacToeGame{
 
         System.out.println("Give the dimensions of the game.");
         int dimension = scanner.nextInt();
+        int playerNumber = dimension;
 
         List<Player> players = new ArrayList<>();
 
@@ -24,7 +25,7 @@ public class TicTacToeGame{
         String ans = scanner.next();
 
         if(ans.equals("y")){
-            dimension= dimension-1;
+            playerNumber= playerNumber-1;
             System.out.println("What is the name of the Bot?");
             String botName = scanner.next();
 
@@ -35,7 +36,7 @@ public class TicTacToeGame{
             players.add(bot);
         }
 
-        for(int i=1;i<dimension;i++){
+        for(int i=1;i<playerNumber;i++){
             System.out.println("What is the name of player" + i + "?");
             String name = scanner.next();
 
@@ -54,15 +55,14 @@ public class TicTacToeGame{
             System.out.println("Current state of the game");
             gameController.displayBoard(game);
 
+            gameController.executeNextMove(game);
+
             System.out.println("Do you want to undo? y/n");
             String input = scanner.next();
 
             if(input.equals("y")){
                 gameController.undo(game);
-            }else{
-                gameController.executeNextMove(game);
             }
-
         }
 
 
