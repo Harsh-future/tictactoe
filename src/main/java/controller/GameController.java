@@ -40,4 +40,8 @@ public class GameController {
     public void displayBoard(Game game){
         game.displayBoard(game);
     }
+
+    public boolean checkDraw(Game game){
+        return game.checkDraw();
+    }
 }

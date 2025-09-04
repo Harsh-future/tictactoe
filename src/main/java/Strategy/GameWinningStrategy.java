@@ -8,4 +8,6 @@ public interface GameWinningStrategy {
     boolean checkWinner(Board board, Move move);
 
     void removeLastMove(Move move,Board board);
+
+    boolean checkDraw(Board board);
 }

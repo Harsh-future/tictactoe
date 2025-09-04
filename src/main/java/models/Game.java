@@ -112,6 +112,10 @@ public class Game {
         }
     }
 
+    public boolean checkDraw(){
+        return gameWinningStrategy.checkDraw(board);
+    }
+
     private Game(){};
 
     public static Builder getBuilder(){

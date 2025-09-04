@@ -66,6 +66,10 @@ public class TicTacToeGame{
             if(input.equals("y")){
                 gameController.undo(game);
             }
+
+            if(gameController.checkDraw(game)){
+                game.setGameStatus(GameStatus.DRAW);
+            }
         }
 
 

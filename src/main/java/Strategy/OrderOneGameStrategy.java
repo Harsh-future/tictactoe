@@ -15,12 +15,15 @@ public class OrderOneGameStrategy implements GameWinningStrategy{
     HashMap<Character,Integer> topLeftDiagSymbolCount = new HashMap<>();
     HashMap<Character,Integer> topRightDiagSymbolCount = new HashMap<>();
 
+    private int count;
+
     public OrderOneGameStrategy(int dimensions){
 
         for(int i=0;i<dimensions;i++){
             rowsCountSymbol.add(new HashMap<>());
             colsCountSymbol.add(new HashMap<>());
         }
+        count = 0;
     }
 
     boolean isTopLeftDiagonal(int row,int col){
@@ -50,6 +53,7 @@ public class OrderOneGameStrategy implements GameWinningStrategy{
         if(isTopRightDiagonal(row,col,dimension)){
             topRightDiagSymbolCount.put(symbol,topRightDiagSymbolCount.getOrDefault(symbol,0)+1);
         }
+        count++;
 
         if(rowsCountSymbol.get(row).get(symbol)== dimension) return true;
 
@@ -79,6 +83,14 @@ public class OrderOneGameStrategy implements GameWinningStrategy{
         if(isTopRightDiagonal(row,col,board.getBoard().size())){
             topRightDiagSymbolCount.put(symbol,topRightDiagSymbolCount.get(symbol)-1);
         }
+        count--;
+    }
+
+    @Override
+    public boolean checkDraw(Board board) {
+        int dimension = board.getBoard().size();
+
+        return count == dimension*dimension;
     }
 
 

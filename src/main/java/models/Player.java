@@ -20,7 +20,7 @@ public class Player {
 
     public Move decideToMove(Board board){
 
-        System.out.println("Enter the rol to make the move");
+        System.out.println("Enter the row to make the move");
         int row = scanner.nextInt();
 
         System.out.println("Enter the col to make the move");
