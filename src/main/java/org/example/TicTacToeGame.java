@@ -1,6 +1,8 @@
 package org.example;
 
 import controller.GameController;
+import exceptions.InvalidCellStateException;
+import exceptions.InvalidRowColException;
 import models.*;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToeGame{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCellStateException, InvalidRowColException {
 
         System.out.println("Game is starting......");
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +29,7 @@ public class TicTacToeGame{
             String botName = scanner.next();
 
             System.out.println("What is the symbol of the Bot?");
-            String botSymbol = scanner.next();
+            Character botSymbol = scanner.next().charAt(0);
 
             Bot bot = new Bot(botName,botSymbol, BotDifficultyLevel.EASY);
             players.add(bot);
@@ -38,7 +40,7 @@ public class TicTacToeGame{
             String name = scanner.next();
 
             System.out.println("What is the symbol of the player" + i + "?");
-            String symbol = scanner.next();
+            Character symbol = scanner.next().charAt(0);
 
             Player player = new Player(name,symbol, PlayerType.HUMAN);
             players.add(player);
@@ -69,12 +71,9 @@ public class TicTacToeGame{
         }
 
         if(gameController.getGameStatus(game).equals(GameStatus.ENDED)){
-            System.out.println("Game is won by " + game.getWinner());
+            System.out.println("Game Ended!!");
+            System.out.println("Game is won by " + game.getWinner().getName());
         }
-
-
-
-
 
     }
 }

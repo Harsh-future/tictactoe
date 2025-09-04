@@ -1,6 +1,8 @@
 package models;
 
 
+import Strategy.GameWinningStrategy;
+import Strategy.OrderOneGameStrategy;
 import exceptions.InvalidCellStateException;
 import exceptions.InvalidDimesionException;
 import exceptions.InvalidPlayerNumberException;
@@ -24,7 +26,17 @@ public class Game {
 
     private Player winner;
 
+    private GameWinningStrategy gameWinningStrategy;
+
     private static Scanner scanner = new Scanner(System.in);
+
+    public GameWinningStrategy getGameWinningStrategy() {
+        return gameWinningStrategy;
+    }
+
+    public void setGameWinningStrategy(GameWinningStrategy gameWinningStrategy) {
+        this.gameWinningStrategy = gameWinningStrategy;
+    }
 
     public Player getWinner() {
         return winner;
@@ -60,7 +72,10 @@ public class Game {
             moves.add(move);
 
             //check if there is a winner or drawn.
-
+            if(gameWinningStrategy.checkWinner(board,move)){
+                gameStatus = GameStatus.ENDED;
+                winner = playerToMove;
+            }
 
             //make next move
             nextPlayerIndex += 1;
@@ -163,6 +178,7 @@ public class Game {
             game.setMoves(new ArrayList<>());
             game.setPlayers(players);
             game.setNextPlayerIndex(0);
+            game.setGameWinningStrategy(new OrderOneGameStrategy(dimensions));
             return game;
         }
     }

@@ -23,8 +23,41 @@ public class OrderOneGameStrategy implements GameWinningStrategy{
         }
     }
 
+    boolean isTopLeftDiagonal(int row,int col){
+        return row == col;
+    }
+
+    boolean isTopRightDiagonal(int row, int col, int dimension){
+
+        return (row + col) == dimension-1;
+    }
+
     @Override
     public boolean checkWinner(Board board, Move move) {
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        char symbol = move.getPlayer().getSymbol();
+        int dimension = board.getBoard().size();
+
+        rowsCountSymbol.get(row).put(symbol,rowsCountSymbol.get(row).getOrDefault(symbol,0)+1);
+        colsCountSymbol.get(col).put(symbol,colsCountSymbol.get(col).getOrDefault(symbol,0)+1);
+
+        if(isTopLeftDiagonal(row,col)){
+            topLeftDiagSymbolCount.put(symbol,topLeftDiagSymbolCount.getOrDefault(symbol,0)+1);
+        }
+
+        if(isTopRightDiagonal(row,col,dimension)){
+            topRightDiagSymbolCount.put(symbol,topRightDiagSymbolCount.getOrDefault(symbol,0)+1);
+        }
+
+        if(rowsCountSymbol.get(row).get(symbol)== dimension) return true;
+
+        if(colsCountSymbol.get(col).get(symbol) == dimension) return true;
+
+        if(isTopLeftDiagonal(row,col) && topLeftDiagSymbolCount.get(symbol) == dimension) return true;
+
+        if(isTopRightDiagonal(row,col,dimension) && topRightDiagSymbolCount.get(symbol) == dimension) return true;
 
         return false;
     }

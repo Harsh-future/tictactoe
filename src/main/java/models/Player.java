@@ -6,13 +6,13 @@ public class Player {
 
     private String name;
 
-    private String symbol;
+    private Character symbol;
 
     private PlayerType playerType;
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public Player(String name, String symbol, PlayerType playerType){
+    public Player(String name, Character symbol, PlayerType playerType){
         this.name = name;
         this.symbol = symbol;
         this.playerType = playerType;
@@ -37,11 +37,11 @@ public class Player {
         this.name = name;
     }
 
-    public String getSymbol() {
+    public Character getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(String symbol) {
+    public void setSymbol(Character symbol) {
         this.symbol = symbol;
     }
 
