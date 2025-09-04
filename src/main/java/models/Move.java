@@ -14,15 +14,18 @@ public class Move {
         this.cell = cell;
     }
 
-    public boolean isValidMove(Board board) throws InvalidRowColException, InvalidCellStateException {
+    public boolean isValidMove(Board board) {
         int row = this.getCell().getRow();
         int col = this.getCell().getCol();
 
         if(row >= board.getBoard().size() || row <0 || col <0 || col >= board.getBoard().size()){
-            throw new InvalidRowColException("Row or Col are going out of bounds of the board.");
+            System.out.println("Invalid Move! Give legit row and col.");
+            return false;
+
         }
         else if(board.getBoard().get(row).get(col).getCellState().equals(CellState.FILLED)){
-            throw new InvalidCellStateException("Position is already filled by another player.");
+            System.out.println("Invalid Move! Position is already acquired.");
+            return false;
         }
 
         return true;

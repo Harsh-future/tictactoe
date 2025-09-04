@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToeGame{
-    public static void main(String[] args) throws InvalidCellStateException, InvalidRowColException {
+    public static void main(String[] args){
 
         System.out.println("Game is starting......");
         Scanner scanner = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class TicTacToeGame{
             System.out.println("Current state of the game");
             gameController.displayBoard(game);
 
-            gameController.executeNextMove(game);
+            if(!gameController.executeNextMove(game)) continue;
 
             System.out.println("State after making move");
             gameController.displayBoard(game);

@@ -25,8 +25,8 @@ public class GameController {
         game.undo();
     }
 
-    public void executeNextMove(Game game) throws InvalidCellStateException, InvalidRowColException {
-        game.makeNextMove();
+    public boolean executeNextMove(Game game){
+        return game.makeNextMove();
     }
 
     public Player getNextPlayer(Game game){

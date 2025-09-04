@@ -50,7 +50,7 @@ public class Game {
         board.displayBoard(game);
     }
 
-    public void makeNextMove() throws InvalidCellStateException, InvalidRowColException {
+    public boolean makeNextMove() {
 
         //1. Player should allow to make the move
         //2. Check whether the move is valid or not.
@@ -80,7 +80,10 @@ public class Game {
             //make next move
             nextPlayerIndex += 1;
             nextPlayerIndex = nextPlayerIndex % players.size();
+            return true;
         }
+
+        return false;
 
     }
 
