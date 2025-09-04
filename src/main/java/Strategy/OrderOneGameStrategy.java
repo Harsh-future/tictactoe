@@ -61,4 +61,25 @@ public class OrderOneGameStrategy implements GameWinningStrategy{
 
         return false;
     }
+
+    @Override
+    public void removeLastMove(Move move,Board board) {
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        char symbol = move.getPlayer().getSymbol();
+
+        rowsCountSymbol.get(row).put(symbol,rowsCountSymbol.get(row).get(symbol)-1);
+        colsCountSymbol.get(col).put(symbol,colsCountSymbol.get(col).get(symbol)-1);
+
+        if(isTopLeftDiagonal(row,col)){
+            topLeftDiagSymbolCount.put(symbol,topLeftDiagSymbolCount.get(symbol)-1);
+        }
+
+        if(isTopRightDiagonal(row,col,board.getBoard().size())){
+            topRightDiagSymbolCount.put(symbol,topRightDiagSymbolCount.get(symbol)-1);
+        }
+    }
+
+
 }

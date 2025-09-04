@@ -84,6 +84,31 @@ public class Game {
 
     }
 
+    public void undo(){
+
+        if(!moves.isEmpty()) {
+            Move lastMove = moves.get(moves.size() - 1);
+
+            if(lastMove.getPlayer().getPlayerType().equals(PlayerType.BOT)){
+                System.out.println("You can not undo Bot move.");
+                return;
+            }
+
+            int col = lastMove.getCell().getCol();
+            int row = lastMove.getCell().getRow();
+
+            moves.remove(lastMove);
+
+            gameWinningStrategy.removeLastMove(lastMove,board);
+
+            board.getBoard().get(row).get(col).setPlayer(null);
+            board.getBoard().get(row).get(col).setCellState(CellState.EMPTY);
+
+            nextPlayerIndex -= 1;
+            nextPlayerIndex = (nextPlayerIndex + players.size()) % players.size();
+        }
+    }
+
     private Game(){};
 
     public static Builder getBuilder(){

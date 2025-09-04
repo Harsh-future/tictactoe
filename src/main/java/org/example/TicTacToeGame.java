@@ -57,6 +57,9 @@ public class TicTacToeGame{
 
             gameController.executeNextMove(game);
 
+            System.out.println("State after making move");
+            gameController.displayBoard(game);
+
             System.out.println("Do you want to undo? y/n");
             String input = scanner.next();
 

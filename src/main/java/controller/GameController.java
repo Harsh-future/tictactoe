@@ -22,7 +22,7 @@ public class GameController {
 
     public void undo(Game game){
 
-        // add undo feature
+        game.undo();
     }
 
     public void executeNextMove(Game game) throws InvalidCellStateException, InvalidRowColException {
